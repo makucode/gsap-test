@@ -1,0 +1,44 @@
+@import "../../assets/globals";
+
+.Hero {
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(0deg, #cfd9df 0%, #e2ebf0 100%);
+}
+
+.HeroCaption {
+    font-size: 6vw;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 6vw;
+
+    position: relative;
+
+    h1 {
+        display: flex;
+        align-items: flex-start;
+        column-gap: 0.25rem;
+
+        opacity: 0;
+        transform: translateY(50px);
+
+        .HeroCaptionDot {
+            display: block;
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 2px;
+
+            background-color: $dark;
+
+            opacity: 0;
+            transform: translateY(10px);
+        }
+    }
+}
