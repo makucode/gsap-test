@@ -7,56 +7,82 @@ import "./style.scss";
 
 const About = () => {
     const aboutRef = useRef();
-    const q = gsap.utils.selector(aboutRef);
-    const tl = useRef();
 
     gsap.registerPlugin(ScrollTrigger);
 
+    const q = gsap.utils.selector(aboutRef);
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: q(".AboutContent"),
+            scrub: 0.5,
+        },
+    });
+
     useLayoutEffect(() => {
-        gsap.to(q(".AboutCaption h2"), {
-            scrollTrigger: {
-                trigger: q(".AboutCaption h2"),
-                start: "top bottom",
-                end: "top center",
-                scrub: 0.5,
-            },
-            x: 0,
-            opacity: 1,
-            filter: "blur(0px)",
-        });
-        gsap.to(q(".AboutCaption button"), {
-            scrollTrigger: {
-                trigger: q(".AboutCaption button"),
-                start: "top bottom",
-                end: "top center",
-                scrub: 0.5,
-            },
-            y: 0,
-            opacity: 1,
-            filter: "blur(0px)",
-        });
-        gsap.to(q(".AboutCaption p"), {
-            scrollTrigger: {
-                trigger: q(".AboutCaption p"),
-                start: "top bottom",
-                end: "top center",
-                scrub: 1,
-            },
-            y: 0,
-            opacity: 1,
-            scale: 1,
-        });
-        gsap.to(q(".AboutImage img"), {
-            scrollTrigger: {
-                trigger: q(".AboutImage"),
-                start: "top bottom",
-                end: "center center",
-                scrub: 0.5,
-            },
+        tl.to(q(".AboutImage img"), {
             opacity: 1,
             filter: "blur(0px)",
             x: 0,
-        });
+        })
+            .to(
+                q(".AboutCaption h2"),
+                {
+                    x: 0,
+                    opacity: 1,
+                    filter: "blur(0px)",
+                },
+                "<"
+            )
+            .to(
+                q(".AboutCaption p"),
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                },
+                "<"
+            )
+            .to(
+                q(".AboutCaption button"),
+                {
+                    y: 0,
+                    opacity: 1,
+                    filter: "blur(0px)",
+                },
+                "<"
+            )
+            .to(q(".AboutImage img"), {
+                opacity: 0,
+                filter: "blur(10px)",
+                x: 200,
+            })
+            .to(
+                q(".AboutCaption h2"),
+                {
+                    x: -200,
+                    opacity: 0,
+                    filter: "blur(10px)",
+                },
+                "<"
+            )
+            .to(
+                q(".AboutCaption p"),
+                {
+                    y: 25,
+                    opacity: 0,
+                    scale: 0.9,
+                },
+                "<"
+            )
+            .to(
+                q(".AboutCaption button"),
+                {
+                    y: 25,
+                    opacity: 0,
+                    filter: "blur(10px)",
+                },
+                "<"
+            );
     }, []);
 
     return (
