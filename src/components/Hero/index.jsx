@@ -1,9 +1,13 @@
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import "./style.scss";
 
 const Hero = () => {
     const heroRef = useRef();
+
+    gsap.registerPlugin(ScrollTrigger);
+
     const q = gsap.utils.selector(heroRef);
     const tl = useRef();
 
@@ -16,20 +20,55 @@ const Hero = () => {
                 opacity: 1,
                 delay: 0.25,
             });
+        gsap.fromTo(
+            q(".HeroCaption h1 .w1"),
+            {
+                scrollTrigger: {
+                    trigger: q(".HeroCaption h1"),
+                    scrub: 0.75,
+                    start: "bottom center",
+                },
+                opacity: 1,
+            },
+            {
+                scrollTrigger: {
+                    trigger: q(".HeroCaption h1"),
+                    scrub: 0.75,
+                    start: "bottom center",
+                },
+                opacity: 0,
+                y: -300,
+            }
+        );
+        gsap.fromTo(
+            q(".HeroCaption h1 .w2"),
+            {
+                scrollTrigger: {
+                    trigger: q(".HeroCaption h1"),
+                    scrub: 0.75,
+                    start: "bottom center",
+                },
+                opacity: 1,
+            },
+            {
+                scrollTrigger: {
+                    trigger: q(".HeroCaption h1"),
+                    scrub: 0.75,
+                    start: "bottom center",
+                },
+                opacity: 0,
+                y: -200,
+            }
+        );
     }, []);
-
-    /*     useEffect(() => {
-        // IF SCROLLTOP > window.innerHeight / 2
-        tl.current.reversed(true);
-        // IF SCROLLTOP < window.innerHeight / 2
-        tl.current.reversed(false);
-    }, []); */
 
     return (
         <section className="Hero" ref={heroRef}>
             <div className="HeroCaption">
                 <h1>
-                    Lorem Ipsum<span className="HeroCaptionDot"></span>
+                    <span className="w1">Lorem</span>{" "}
+                    <span className="w2">Ipsum</span>
+                    <span className="HeroCaptionDot"></span>
                 </h1>
             </div>
         </section>

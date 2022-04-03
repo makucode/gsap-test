@@ -13,8 +13,8 @@ const About = () => {
     const q = gsap.utils.selector(aboutRef);
     const tl = gsap.timeline({
         scrollTrigger: {
-            trigger: q(".AboutContent"),
-            scrub: 0.5,
+            trigger: q(".AboutContent p"),
+            scrub: 1,
         },
     });
 
@@ -23,6 +23,7 @@ const About = () => {
             opacity: 1,
             filter: "blur(0px)",
             x: 0,
+            duration: 0.85,
         })
             .to(
                 q(".AboutCaption h2"),
@@ -30,6 +31,7 @@ const About = () => {
                     x: 0,
                     opacity: 1,
                     filter: "blur(0px)",
+                    duration: 0.85,
                 },
                 "<"
             )
@@ -39,6 +41,7 @@ const About = () => {
                     y: 0,
                     opacity: 1,
                     scale: 1,
+                    duration: 0.85,
                 },
                 "<"
             )
@@ -48,6 +51,7 @@ const About = () => {
                     y: 0,
                     opacity: 1,
                     filter: "blur(0px)",
+                    duration: 0.85,
                 },
                 "<"
             )
